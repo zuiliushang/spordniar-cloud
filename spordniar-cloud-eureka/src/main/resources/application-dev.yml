@@ -1,0 +1,17 @@
+eureka:
+ client:
+  register-with-eureka: true
+  fetch-registry: true
+  service-url:
+   defaultZone: http://spordniar:admin@127.0.0.1:8761/eureka
+  healthcheck:
+   enabled: true
+ server:
+  enable-self-preservation: false
+spring:
+ rabbitmq:
+  addresses: 192.168.203.128:5672
+  username: admin
+  password: admin
+  publisher-confirms: true
+  virtual-host: /

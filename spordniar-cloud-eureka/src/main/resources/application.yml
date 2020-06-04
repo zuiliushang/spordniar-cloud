@@ -1,0 +1,16 @@
+server:
+ port: 8761
+security:
+ basic:
+  enabled: true
+ user:
+  name: spordniar
+  password: admin
+logging:
+ level:
+  ROOT: INFO
+spring:
+ application:
+  name: spordniar-cloud-eureka
+ profiles:
+  active: dev
