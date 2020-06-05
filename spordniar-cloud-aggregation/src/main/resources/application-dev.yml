@@ -1,0 +1,17 @@
+spring:
+ rabbitmq:
+  addresses: 192.168.203.128:5672
+  username: admin
+  password: admin
+  publisher-confirms: true
+  virtual-host: /
+ redis:
+  host: 192.168.203.128
+  port: 6379
+  pool:
+   max-idle: 8
+   min-idle: 0
+   max-active: 300
+   max-wait: -1
+ cache:
+  type: redis

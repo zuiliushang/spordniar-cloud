@@ -1,15 +1,5 @@
 server:
  port: 8888
-eureka:
- client:
-  register-with-eureka: true
-  fetch-registry: true
-  healthcheck:
-   enabled: false
- instance:
-  prefer-ip-address: true
-  hostname: ${spring.cloud.client.ipAddress}
-  instance-id: ${spring.cloud.client.ipAddress}:${server.port}
 logging:
  level:
   root: INFO

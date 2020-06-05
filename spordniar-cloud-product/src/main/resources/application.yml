@@ -1,0 +1,17 @@
+server:
+ port: 8803
+spring:
+ application:
+  name: spordniar-cloud-product
+ profiles:
+  active: dev
+management:
+ security:
+  enabled: false
+security:
+ basic:
+  enabled: true
+ user:
+  name: admin
+  password: admin
+  

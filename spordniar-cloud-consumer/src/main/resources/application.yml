@@ -1,0 +1,17 @@
+server:
+ port: 8802
+spring:
+ application:
+  name: spordniar-cloud-consumer
+ profiles:
+  active: dev
+management:
+ security:
+  enabled: false
+security:
+ basic:
+  enabled: true
+ user:
+  name: admin
+  password: admin
+  

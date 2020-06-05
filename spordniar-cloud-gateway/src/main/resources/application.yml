@@ -1,0 +1,76 @@
+spring:
+ application:
+  name: spordniar-cloud-gateway
+ profiles:
+  active: dev
+ http:
+  mutipart:
+   enabled: true
+   max-file-size: 2000MB
+   max-request-size: 2500MB  # Max request size 默认 10M
+   file-size-threshold: 1MB  # 当上传文件达到1MB的时候进行磁盘写入
+   location: /tmp/  # 上传的临时目录
+ cache:
+  type: guava
+ cloud:
+  config:
+   uri: http://spordniar:admin@127.0.0.1:${config.port:8888}
+server:
+ port: 9001
+eureka:
+ client:
+  service-url:
+   defaultZone: http://spordniar:admin@localhost:8761/eureka
+ instance:
+  prefer-ip-address: true
+  hostname: ${spring.cloud.client.ipAddress}
+  instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+zuul:
+ ignoreServices: '*'
+ ignore-local-false: false
+ ignore-pattern:
+ routes:
+  common-netcheck:
+   path: /v1/common/netcheck/**
+   url: forward:/common/netcheck
+  service-consumer:
+   path: /v1/service/consumer/**
+   serviceId: spordniar-cloud-consumer
+  service-product:
+   path: /v1/service/product/**
+   serviceId: spordniar-cloud-product
+  service-aggregation:
+   path: /v1/service/aggregation/**
+   serviceId: spordniar-cloud-aggregation
+ host:
+  connect-timeout-millis: 10000
+  socket-timeout-millis: 60000
+ retryable: false
+ribbon:
+ ConnectTimeout: 15000
+ ReadTimeout: 60000
+hystrix:
+ command:
+  default:
+   execution:
+    isolation:
+     thread:
+      timeoutInMilliseconds: 60000
+#  spordniar-cloud-consumer:
+#   execution:
+#    timeout:
+#     enabled: false
+#  spordniar-cloud-product:
+#   execution:
+#    timeout:
+#     enabled: false
+management:
+ security:
+  enabled: false
+security:
+ basic:
+  enabled: false
+logging:
+ config: classpath:logback.xml
+ level:
+  root: info

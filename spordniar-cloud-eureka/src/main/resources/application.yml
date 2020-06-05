@@ -14,3 +14,6 @@ spring:
   name: spordniar-cloud-eureka
  profiles:
   active: dev
+ cloud:
+  config:
+   uri: http://spordniar:admin@127.0.0.1:${config.port:8888}
