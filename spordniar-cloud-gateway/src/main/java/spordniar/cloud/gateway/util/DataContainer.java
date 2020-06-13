@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import spordniar.cloud.gateway.entity.AppInfo;
 import spordniar.cloud.gateway.entity.Auth;
 import spordniar.cloud.gateway.entity.AuthResource;
+import spordniar.cloud.gateway.entity.Partner;
+import spordniar.cloud.gateway.entity.PartnerRole;
 import spordniar.cloud.gateway.entity.Role;
 import spordniar.cloud.gateway.entity.RoleAuth;
 import spordniar.cloud.gateway.entity.User;
@@ -24,6 +27,9 @@ public class DataContainer {
 	public static List<Role> roles = new ArrayList<Role>();
 	public static List<RoleAuth> roleAuths = new ArrayList<RoleAuth>();
 	public static List<UserRole> userRoles = new ArrayList<UserRole>();
+	public static List<AppInfo> appInfos = new ArrayList<AppInfo>();
+	public static List<Partner> partners = new ArrayList<Partner>();
+	public static List<PartnerRole> partnerRoles = new ArrayList<PartnerRole>();
 	
 	static {
 		users.addAll(Arrays.asList(
@@ -57,6 +63,18 @@ public class DataContainer {
 				new AuthResource(1, 1, "/v(\\d+)/server/comsumer/*", (short)1, ResourceType.URI.value(), VerifyType.SIGN.value()),
 				new AuthResource(2, 2, "/v(\\d+)/server/product/*", (short)1, ResourceType.URI.value(), VerifyType.TOKEN.value()),
 				new AuthResource(3, 3, "/v(\\d+)/server/aggregation/*", (short)1, ResourceType.URI.value(), VerifyType.TOKEN.value())
+				));
+		partners.addAll(Arrays.asList(
+				new Partner(1, "RAINGROUP",(short) 24, 10),
+				new Partner(2, "NIARGROUP",(short) 24, 10)
+				));
+		appInfos.addAll(Arrays.asList(
+				new AppInfo(1, "RAINAPP", "z1x2c3v4b5", 1, null),
+				new AppInfo(2, "NIARAPP", "a1s2d3f4g5", 2, null)
+				));
+		partnerRoles.addAll(Arrays.asList(
+				new PartnerRole(1, 3),//all
+				new PartnerRole(2, 2)//consumer
 				));
 	}
 	

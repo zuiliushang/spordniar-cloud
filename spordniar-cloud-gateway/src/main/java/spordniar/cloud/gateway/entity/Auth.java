@@ -30,7 +30,6 @@ public class Auth {
 
 	public Auth() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 }

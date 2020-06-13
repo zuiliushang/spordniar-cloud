@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 
+import spordniar.cloud.gateway.entity.AppInfo;
 import spordniar.cloud.gateway.entity.ResourceDTO;
 import spordniar.cloud.gateway.service.AuthServer;
 import spordniar.cloud.gateway.status.RespCode;
@@ -104,7 +105,22 @@ public class GatewayAuthFilter extends ZuulFilter implements InitializingBean{
 			return new ExecuteResult<List<String>, RespCode>(false, null, ILLEGAL_PARAMS);
 		}
 		LOG.info("RECEIVE [ SIGN={} , APPID={} ]", accessSign, appId);
+		AppInfo appInfo = authServer.getAppInfoByAppId(appId);
+		if (appInfo == null) {
+			LOG.error("VerifySign failed: No available appId, appId={}" , appId);
+			return new ExecuteResult<List<String>, RespCode>(false, null, ILLEGAL_APP_ID);
+		}
+		String contentType = request.getContentType();
+		if (!isSupportContentType(contentType)) {
+			LOG.error("VerifySign failed: Not Support ContentType, ContentType={} ", contentType);
+			return new ExecuteResult<List<String>, RespCode>(false, null, SIGN_CHECK_FAILURE);
+		}
+		
 		return null;
+	}
+	private boolean isSupportContentType(String contentType) {
+		
+		return false;
 	}
 	@Override
 	public void afterPropertiesSet() throws Exception {
