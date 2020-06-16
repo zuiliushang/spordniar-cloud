@@ -21,9 +21,9 @@ import spordniar.cloud.gateway.status.ResourceType;
 import spordniar.cloud.gateway.util.DataContainer;
 
 @Service
-public class AuthServer {
+public class AuthService {
 
-	private static Logger LOGGER = LoggerFactory.getLogger(AuthServer.class);
+	private static Logger LOGGER = LoggerFactory.getLogger(AuthService.class);
 	
 	public List<ResourceDTO> getAllResourceByResourceType(ResourceType type){
 		return DataContainer.authResources

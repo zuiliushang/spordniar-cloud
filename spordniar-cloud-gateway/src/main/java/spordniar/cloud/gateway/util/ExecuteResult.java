@@ -19,7 +19,7 @@ public class ExecuteResult<Rt, Et> {
 		this.errorResult = errorResult;
 	}
 
-	public boolean isSuccess() {
+	public boolean success() {
 		return success;
 	}
 
@@ -27,7 +27,7 @@ public class ExecuteResult<Rt, Et> {
 		this.success = success;
 	}
 
-	public Rt getRightResult() {
+	public Rt getResult() {
 		return rightResult;
 	}
 
@@ -35,7 +35,7 @@ public class ExecuteResult<Rt, Et> {
 		this.rightResult = rightResult;
 	}
 
-	public Et getErrorResult() {
+	public Et getError() {
 		return errorResult;
 	}
 
